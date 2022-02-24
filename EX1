@@ -1,0 +1,15 @@
+Úkol 1/
+
+Podívejte se na text o vybraných pravděpodobnostních rozděleních na wikipedii: https://en.wikipedia.org/wiki/Probability_distribution#Common_probability_distributions_and_their_applications 
+
+Ze seznamu pravděpodobnostních rozdělení -  https://en.wikipedia.org/wiki/Probability_distribution#Common_probability_distributions_and_their_applications - si jedno vyberte, nakreslete jeho hustotu a distribuční funkci (v libovolném programu) a napište, k čemu se vybrané rozdělení používá (tj. jaký reálný jev může modelovat).
+
+Na grafu hustoty (nebo pravděpodobnostní funkce, pokud jste si zvolili diskrétní rozdělení) i na grafu distribuční funkce se pokuste nalézt (ukázat) hodnotu, kterou příslušná náhodná veličina překročí s poloviční pravděpodobností.
+
+
+
+Odhadněte pravděpodobnost úspěchu (třeba toho, že na kostce padne šestka) pomocí náhodného výběru, který sami vytvoříte (třeba házením kostkou, ale v podstatě můžete házet i něčím jiným nebo házení simulovat na počítači).
+
+Vypočítejte konfidenční interval podle vzorce ve videu a stručně popište jeho vlastnosti. 
+
+(Uvědomte si, že 95% pravděpodobnost pokrytí se vztahuje k teoretickému (mnohonásobnému) opakování celého experimentu -- zatímco v praxi experiment provádíte obvykle jenom jednou.)

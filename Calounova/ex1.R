@@ -1,3 +1,7 @@
+## Beta distribuce
+
+# https://en.wikipedia.org/wiki/Beta_distribution
+
 x <- seq(0, 1)
 
 # HUSTOTNI FCE

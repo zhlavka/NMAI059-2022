@@ -10,4 +10,4 @@ throws
  46  37  47  48  44  44  63 171
 ```
 
-Považujme za úspešný hod taký, ktorého výslekdom je číslo 8. Ide vlastne o binomické rozdlenie s parametrom `p = 0.3`. Vieme, že náhodný výber veľkosti 500 z tohto rozdelenia má strednú hodnotu 0.3 a rozptyl 0,00042. Ako odhad úspešnosti zvolíme relatívnu početnosť hodu čísla 8, teda 171/500 (= 0.342). Zo vzorcov z prednášky potom dostávame konfidenčný interval (0.3018, 0.3821), ktorý sme spočítali ako `(0.342 +- qnorm(0.975)*sqrt(0.3*0.7)/sqrt(500) )`
+Považujme za úspešný hod taký, ktorého výslekdom je číslo 8. Ide vlastne o binomické rozdlenie s parametrom `p = 0.3`. Vieme, že náhodný výber veľkosti 500 z tohto rozdelenia má strednú hodnotu 0.3 a rozptyl 0,00042. Ako odhad úspešnosti zvolíme relatívnu početnosť hodu čísla 8, teda 171/500 (= 0.342). Zo vzorcov z prednášky potom dostávame konfidenčný interval (0.3018, 0.3821), ktorý sme spočítali ako `0.342 +- qnorm(0.975)*sqrt(0.3*0.7)/sqrt(500)`

@@ -45,3 +45,12 @@ Zaujíma nás grafické znázornenie kvantilu 0.5. Zoberme si hustotu a distribu
 a takto pre distribučnú funkciu:
 
 ![qDistribFcia](Pictures/E01P04.png)
+
+Použitý kód je tu:
+```
+plot(x,dgamma(x,shape=2,rate=2),type="l",col="orange")
+abline(v = qgamma(0.5,shape=2,rate=2),col="black")
+
+plot(x,pgamma(x,shape=2,rate=2),type="l",col="orange")
+abline(v = qgamma(0.5,shape=2,rate=2),col="black")
+```

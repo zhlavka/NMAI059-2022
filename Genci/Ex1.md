@@ -34,7 +34,7 @@ A tu je graf:
 
 ## Použitie rozdelenia
 
-Gamma rozdelenie sa dá využiť pri modelovaní množstva zrážok, veľkosti poistných udalostí, veku vzniku rakoviny a podobne. Ďalšie využitia nájdete na [Wikipédii](https://en.wikipedia.org/wiki/Gamma_distribution#Occurrence_and_applications)
+Gamma rozdelenie sa dá využiť pri modelovaní množstva zrážok, veľkosti poistných udalostí, veku vzniku rakoviny a podobne. Ďalšie využitia nájdete na [Wikipédii](https://en.wikipedia.org/wiki/Gamma_distribution#Occurrence_and_applications).
 
 ## Kvantil
 

@@ -4,7 +4,7 @@ Generický text o rozdelení si môžete prečítať na [Wikipédii](https://en.
 
 ## Hustota a distribučná funkcia
 
-Najprv si nakreslíme distribučnú funkciu. Predpokladajme hustoty s týmito parametrami:
+Najprv si nakreslíme hustotu. Predpokladajme hustoty s týmito parametrami:
 ```
 x = seq(0,10, by=0.1)
 plot(x,dgamma(x,shape=1,rate=2),type="l",col="red")
@@ -17,3 +17,17 @@ lines(x,dgamma(x,shape=7.5,rate=1),col="blue")
 Dostávame tento obrázok:
 
 ![Hustota](Pictures/E01P01.png)
+
+Nasleduje distribučná funkcia pre tieto rozdelenia:
+```
+plot(x,pgamma(x,shape=1,rate=2),type="l",col="red")
+lines(x,pgamma(x,shape=2,rate=2),col="orange")
+lines(x,pgamma(x,shape=3,rate=2),col="yellow")
+lines(x,pgamma(x,shape=5,rate=1),col="green")
+lines(x,pgamma(x,shape=9,rate=0.5),col="black")
+lines(x,pgamma(x,shape=7.5,rate=1),col="blue")
+```
+
+A tu je graf:
+
+![Hustota](Pictures/E01P02.png)

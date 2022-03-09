@@ -15,3 +15,5 @@ lines(x,dgamma(x,shape=9,rate=0.5),col="black")
 lines(x,dgamma(x,shape=7.5,rate=1),col="blue")
 ```
 Dostávame tento obrázok:
+
+![Hustota](Pictures/E01P01.png)

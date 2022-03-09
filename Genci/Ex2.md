@@ -11,3 +11,5 @@ throws
 ```
 
 Už na prvý pohľad vidieť, že číslo 7 padlo relatívne veľakrát. Uvidíme však, čo nám povie konfidenčný interval.
+
+Odhad 

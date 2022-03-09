@@ -30,4 +30,18 @@ lines(x,pgamma(x,shape=7.5,rate=1),col="blue")
 
 A tu je graf:
 
-![Hustota](Pictures/E01P02.png)
+![DistribFcia](Pictures/E01P02.png)
+
+## Použitie rozdelenia
+
+Gamma rozdelenie sa dá využiť pri modelovaní množstva zrážok, veľkosti poistných udalostí, veku vzniku rakoviny a podobne. Ďalšie využitia nájdete na [Wikipédii](https://en.wikipedia.org/wiki/Gamma_distribution#Occurrence_and_applications)
+
+## Kvantil
+
+Zaujíma nás grafické znázornenie kvantilu 0.5. Zoberme si hustotu a distribučnú funkciu pre rozdelenie s parametrami `shape = 2` a `rate = 2`. Takto to vyzerá pre hustotu:
+
+![qHustota](Pictures/E01P03.png)
+
+a takto pre distribučnú funkciu:
+
+![qDistribFcia](Pictures/E01P04.png)

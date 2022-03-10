@@ -1,0 +1,61 @@
+---
+title: "Exercise 2"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Beta rozdělení
+
+## Odhad parametru $\alpha$ pro zafixované $\beta$
+
+$\beta$=0.5
+
+### Momentova metoda
+$\overline{Xn} = \alpha/(\alpha + 0.5)$
+
+
+#### Odhad $\alpha$ na zaklade jedne simulace
+
+```{r}
+x = rbeta(1000, 1,0.5)
+x_mean= mean(x)
+odhad_alfa = (0.5)* x_mean / (1-x_mean)
+odhad_alfa
+```
+
+
+#### Porovnani pro 1000 simulaci
+
+```{r}
+odhady = c(rep(0,1000))
+
+for (i in 1:1000) {
+  x = rbeta(1000, 1,0.5)
+  x_mean= mean(x)
+  odhad_alfa = (0.5)* x_mean / (1-x_mean)
+  odhady[i] = odhad_alfa
+}
+mean(odhady)
+```
+
+```{r}
+hist(odhady)
+```
+
+### Metoda maximalni verohodnosti
+
+#### Odhad $\alpha$ 
+
+```{r}
+# reseni numericky pomoci mle funkce z stat4 knihovny
+
+
+```
+
+

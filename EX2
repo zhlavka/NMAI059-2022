@@ -8,3 +8,42 @@ EX 2
 
 4/ pokuste se odvodit konfidencni interval a pomoci pocitacove simulace overte, ze skutecne funguje.
 
+Priklad pro Exponencialni rozdeleni v R:
+
+## exponencialni rozdeleni
+
+x=rexp(20,rate=10)
+curve(dexp(x,rate=10))
+
+odhad=1/mean(x)
+
+simul.x=matrix(rexp(1000*20,rate=10),nrow=20)
+odhady=apply(simul.x,2,function(x){1/mean(x)})
+
+par(mfrow=c(2,2))
+hist(odhady,prob=TRUE)
+curve(dnorm(x,mean=10,sd=10/sqrt(20)),add=TRUE)
+
+hist(log(odhady),pro=TRUE)
+curve(dnorm(x,mean=log(10),sd=1/sqrt(20)),add=TRUE)
+
+ci1.l=odhady-qnorm(0.975)*odhady/sqrt(20)
+ci1.u=odhady+qnorm(0.975)*odhady/sqrt(20)
+ci2.l=odhady/exp(qnorm(0.975)/sqrt(20))
+ci2.u=odhady*exp(qnorm(0.975)/sqrt(20))
+
+plot(NULL,ylim=c(0,25),xlim=c(0,100))
+for(i in 1:100) {
+    lines(x=c(i,i),y=c(ci1.l[i],ci1.u[i]))
+}
+abline(h=10)
+pod1=mean(ci1.u<10)
+nad1=mean(ci1.l>10)
+
+plot(NULL,ylim=c(0,25),xlim=c(0,100))
+for(i in 1:100) {
+    lines(x=c(i,i),y=c(ci2.l[i],ci2.u[i]))
+}
+abline(h=10)
+pod2=mean(ci2.u<10)
+nad2=mean(ci2.l>10)

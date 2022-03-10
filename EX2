@@ -47,3 +47,12 @@ for(i in 1:100) {
 abline(h=10)
 pod2=mean(ci2.u<10)
 nad2=mean(ci2.l>10)
+
+
+## verohodnostni a log-verohodnostni fce pro exponencialni rozdeleni (lze numericky maximalizovat napr. funkci mle() v knihovne stats4)
+
+par(mfrow=c(2,1))
+verohodnost=function(u){(u^20)*exp(-u*sum(x))}
+curve(verohodnost(x),5,15)
+logver=function(u){20*log(u)-u*sum(x)}
+curve(logver(x),5,15)

@@ -1,3 +1,10 @@
 EX 2
 
-tady bude zadani -- po dohode na cviceni 10.3.
+1/ pro zvolene rozdeleni a zvoleny parametr odvodte teoreticky vzorecek pro momentovy nebo maximalne verohodny odhad,
+
+2/ pro simulovana data spocitejte navrzeny odhad,
+
+3/ opakovanim simulace z bodu 2/ ziskate simulaci rozdeleni odhadu (vzhledem k odhadovanemu parametru) -- to lze znazornit napriklad pomoci histogramu,
+
+4/ pokuste se odvodit konfidencni interval a pomoci pocitacove simulace overte, ze skutecne funguje.
+

@@ -1,6 +1,6 @@
 # Gamma rozdelenie
 
-Generický text o rozdelení si môžete prečítať na [Wikipédii](https://en.wikipedia.org/wiki/Gamma_distribution). Zatiaľ stačí vedieť, že rozdelenie má dva parametre a dva rôzne spôsoby parametrizácie. My budeme pracovať s parametrami *shape* a *scale* (druhá možnosť je použiť *shape* a *rate*). 
+Generický text o rozdelení si môžete prečítať na [Wikipédii](https://en.wikipedia.org/wiki/Gamma_distribution). Zatiaľ stačí vedieť, že rozdelenie má dva parametre a dva rôzne spôsoby parametrizácie. My budeme pracovať s parametrami *shape* a *rate* (druhá možnosť je použiť *shape* a *scale*). 
 
 ## Hustota a distribučná funkcia
 

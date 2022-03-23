@@ -1,0 +1,41 @@
+---
+title: "NMAI061-22-EX1"
+author: 'Matej Nemec'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1)Poisson distribution
+
+This distribution is discrete and can model for example a number of photons hitting an area in a given timeframe. The expected rate of occurence $\lambda$ is set to 9. We are only looking at probabilites from 1 to 100 ocurrences. We can use qpois function to determine for which value of parameter $\lambda$ cumultative probability exceeds 0.5. This value is (unsurprisingly) 9.
+
+```{r}
+pd=dpois(x=1:100,lambda=9)
+plot(pd,type="l",main=paste0('Cumultative probability exceeds 0.5 for lambda of ',qpois(0.5,9), '; its value is ~',format(sum(pd[1:9]),digits = 4)),xlab='Number of emitted photons',ylab='Probability')
+```
+\newpage
+
+## 2a)Random sampling
+
+Unfair dice throws:
+```{r}
+n=1000
+real_probability=c(rep(1/7,5),2/7)
+simulated_probability <- sample(1:6, size=n, replace=TRUE, prob=real_probability)
+table(simulated_probability)/n
+names(real_probability)=1:6
+cat('real_probability')
+print(round(real_probability,digits = 2))
+```
+
+## 2b)Confidence interval
+We will calculate the confidence interval for 6 from simulated probability.
+```{r}
+prob=length(which(simulated_probability==6))/n
+margin <- qnorm(0.975)*sqrt(prob*(1-prob))/sqrt(n)
+ci=c(prob-margin,prob+margin)
+cat(paste0('Confidence interval for throwing 6 on our unfair dice from ',n,' throws is (',round(ci[1],digits=3),' ; ',round(ci[2],digits = 3),')'))
+```

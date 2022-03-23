@@ -48,7 +48,7 @@ max(log_estimates)+sd(log_estimates), by = sd(log_estimates)/100),xlab='',ylab =
 ```
 \newpage
 
-## 3)Confidence interval estimation and testing
+## 4)Confidence interval estimation and testing
 
 We can see that $\lambda$ of 9 falls within confidence intervals for all $\lambda$ estimations.
 (Note: We only visualize 200 randomly picked estimations from 1000 for the graph to be readable):

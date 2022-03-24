@@ -17,14 +17,30 @@ knitr::opts_chunk$set(echo = TRUE)
 $\beta$=0.5
 
 ### Momentova metoda
-$\overline{Xn} = \alpha/(\alpha + 0.5)$
+$E[X] = \frac{\alpha}{\alpha + \beta} = \overline{Xn}$
 
+$\overline{Xn} = \frac{\alpha}{\alpha + 0,5}$
+
+$\overline{Xn}.(\alpha + 0,5) = \alpha$
+
+$\overline{Xn}.\alpha + 0,5.\overline{Xn}$
+
+$\alpha - \overline{Xn}.\alpha = 0,5.\overline{Xn}$
+
+$\alpha.(1-\overline{Xn}) = 0,5.\overline{Xn}$
+
+$\alpha = \frac{0,5.\overline{Xn}}{1-\overline{Xn}}$
 
 #### Odhad $\alpha$ na zaklade jedne simulace
 
 ```{r}
+# Vybereme 1000 čísel z Beta rozdělení s parametry alpha=1 a beta=0.5
 x = rbeta(1000, 1,0.5)
+
+# spocitame jejich prumer
 x_mean= mean(x)
+
+# spocitame odhad alpha na zaklade vzorce vyse
 odhad_alfa = (0.5)* x_mean / (1-x_mean)
 odhad_alfa
 ```
@@ -33,16 +49,26 @@ odhad_alfa
 #### Porovnani pro 1000 simulaci
 
 ```{r}
+# vyvorime vektor pro uchovani odhadu
 odhady = c(rep(0,1000))
 
+# pro 1000 opakovani
 for (i in 1:1000) {
+  
+  # vybereme 1000 cisel z beta rozdeleni s parametry alpha=1 a beta=0.5
   x = rbeta(1000, 1,0.5)
+  
+  # spocitame odhad
   x_mean= mean(x)
   odhad_alfa = (0.5)* x_mean / (1-x_mean)
   odhady[i] = odhad_alfa
 }
+
+# prumerna hodnota odhadu alpha na zaklade 1000 simulaci
 mean(odhady)
 ```
+
+Histogram odhadu $\alpha$ pri 1000 opakovani
 
 ```{r}
 hist(odhady)
@@ -50,12 +76,51 @@ hist(odhady)
 
 ### Metoda maximalni verohodnosti
 
+Pro Beta distribuci je metoda maximalni verohodnosti komplikovana, viz [wiki](https://en.wikipedia.org/wiki/Beta_distribution#Maximum_likelihood)
+Ulohu jsem tedy resila numericky pomoci funkce [mle](https://www.rdocumentation.org/packages/stats4/versions/3.6.2/topics/mle) ze stats4 knihovny.
+a potrebne vzorce jsem cerpala z wiki.
+
+$ln(L(\alpha,\beta|X)) = \sum_{i=1}^N ln(L_{i}(\alpha,\beta|X_{i}))$
+
+$\frac{\partial ln(L(\alpha,\beta|X))}{\partial \alpha} = \sum_{i=1}^N ln(X_{i}) - N.\frac {\partial ln(B(\alpha,\beta))} {\partial \alpha} = 0$
+
+$\frac {\partial B(\alpha, \beta)} {\partial \alpha} = -\psi(\alpha + \beta) + \psi(\alpha) + 0$
+
+$\psi$ je digamma funkce [wiki](https://en.wikipedia.org/wiki/Digamma_function)
+
 #### Odhad $\alpha$ 
 
 ```{r}
 # reseni numericky pomoci mle funkce z stat4 knihovny
 
+library(stats4)
+
+beta_nll <- function(alpha, x=x){
+  x_log_sum = sum(log(x))
+  derivation = -digamma(alpha+0.5) + digamma(alpha) + 0
+  N = length(x)
+  result = -(x_log_sum -N*(derivation))
+  return(result)
+}
+
+
+fit0 <- mle(minuslogl = beta_nll, start = list(alpha = 0.5))
+
 
 ```
 
+
+```{r}
+odhady2 = c(rep(0,1000))
+for (i in 1:1000){
+  name = paste('x', as.character(i), sep='')
+  odhad2 = coef(fit0)[name][1]
+  odhady2[i] = as.double(odhad2)
+}
+  
+```
+
+```{r}
+hist(odhady2)
+```
 

@@ -1,0 +1,71 @@
+---
+title: "Ex3"
+author: "Tereza Čalounová"
+date: "3/24/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## PNEUMATIKY
+
+Testujeme, zda je prumerne ojeti leve a prave pneumatiky stejne ci nikoliv.
+
+### Metodologie: 
+
+Prumerne ojeti pneumatik porovnavame pomoci oboustranneho paroveho t-testu na hladine 0.05. Celkove mame 10 mereni.
+
+H0: prumer ojeti levych pneumatik = prumer ojeti pravych pneumatik
+
+H1: prumer ojeti levych pneumatik != prumer ojeti levych pneumatik
+
+
+```{r cars}
+# nacteni dat
+pneumatiky = read.table('https://www2.karlin.mff.cuni.cz/~hlavka/vyuka/stati/data/ojetipneu.txt')
+leva = pneumatiky$Leva
+prava = pneumatiky$Prava
+
+# prumery leve a prave pneumatiky
+print(mean(leva))
+print(mean(prava))
+
+# parovy oboustranny t-test
+t.test(leva,prava, paired=TRUE, conf.level=0.95)
+```
+
+### Vysledky: 
+
+p-hodnota = 0.7764 je vyssi nez alfa=0.05, nemuzeme tedy zamitnout nulovou hypotezu.
+
+
+## QUICKSORT 2
+
+Byly porovnany dve ruzne metody vyberu deliciho bodu algoritmu Quicksort a pocitan pocet vymen pri trizeni.
+
+Pro kazdou metodu zvlast bylo vygenerovano 25 posloupnosti delky 50000 a zjisten pocet potrebnych porovnani.
+
+### Metodologie: 
+Pro porovnani prumerneho poctu vymen byl pouzit jednostranny dvouvyberovy t-test na hladine 0.05. Celkove mame 25 mereni.
+
+H0: prumer poctu porovnani prvni metodou = prumer poctu porovnani druhou metodou
+
+H1: prumer poctu porovnani prvni metodou < prumer poctu porovnani druhou metodou
+
+```{r}
+quicksort = read.table('https://www2.karlin.mff.cuni.cz/~hlavka/vyuka/stati/programy/data/quicksort2.txt')
+prvni = quicksort$V1
+druhy = quicksort$V2
+
+print(mean(prvni))
+print(mean(druhy))
+
+t.test(prvni, druhy, alternative="less", conf.level=0.95)
+
+```
+
+### Vysledky:
+p-hodnota < 2.2e-16, muzeme tedy zamitnout nulovou hypotezu a rici, ze prvni metoda je lepsi (vyzaduje mene porovnani) nez druha metoda

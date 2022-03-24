@@ -26,7 +26,7 @@ Výsledok: <br />
 
 Vo vytvorenom datasete obsahujúcom 100 hodov sa 166-krát nachádza číslo 6. Pravdepodobnosť úspechu je teda 16.6%.
 
-Na základe [vzorca z prednášky](https://www.youtube.com/watch?v=C1sH4UVuYuk) dokážeme vypočítať konfidenčný interval so spoľahlivosťou 90% = (-0.03, 0.36):
+Na základe [vzorca z prednášky](https://www.youtube.com/watch?v=C1sH4UVuYuk) dokážeme vypočítať konfidenčný interval so spoľahlivosťou 90%: (-0.03, 0.36):
 
 + `p <-0.166`
 + `low <- p - (1.645/sqrt(10))*sqrt(p*(1-p))`

@@ -9,3 +9,28 @@ Okomentujte výsledek testu a splnění potřebných předpokladů.
 
 Příklad:
 
+Porovnavame silu potrebnou k rozdrceni pomalu varenych zubu a zubu po teplotnich socich.
+
+pomalu=c(27.4, 26.2, 26.2, 29.4, 30.1, 28.2, 27.0, 28.4)
+posoku=c( 25.9, 26.4, 27.0, 27.8, 26.3, 27.6, 27.0, 25.6)
+
+Metodologie: Silu potrebnou k rozdrceni zubu bude porovnavat pomoci jednostranneho dvouvyberoveho t-testu s Welchovou korekci pro stupne volnosti na hladine 0.05.
+
+Vysledky: Sila potrebna k rozdrceni sokovanych zubu (n=8, prum. 26.7) je signifikantne mensi (p-hodnota 0.0344) 
+nez sila potrebna k rozdrceni pomalu varenych zubu (n=8, 27.9).
+
+------------------------------------
+
+	Welch Two Sample t-test
+
+data:  pomalu and posoku
+t = 2.0194, df = 10.87, p-value = 0.0344
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ 0.1275144       Inf
+sample estimates:
+mean of x mean of y 
+  27.8625   26.7000 
+
+Komentar: zda se, ze data neobsahuji zadna odlehla pozorovani a muzeme tak pouzit dvouvyberovy t-test.
+

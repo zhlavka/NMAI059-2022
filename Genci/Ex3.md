@@ -12,7 +12,7 @@ Budeme pracovať s datasetom USAccDeaths (nachádza sa defaultne v Rku). Zdroj d
 1977  7792  6957  7726  8106  8890  9299 10625  9302  8314  8850  8265  8796
 1978  7836  6892  7791  8192  9115  9434 10484  9827  9110  9070  8633  9240
 ```
-## Hypotéza a jej testovanie
+## Hypotéza a jej testovanie - uprav na párový test
 
 Budeme porovnávať počet úmrtí v roku 1974 a 1978. Rok 1974 je posledným (celým) rokom kedy ešte prebiehala vojna vo Vietname (skončila 30.4.1975). Zaujíma nás, či je priemerný počet úmrtí v roku 1978 vyšší ako v roku 1974, keďže množstvo vojakov sa vrátilo domov.
 

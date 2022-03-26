@@ -50,7 +50,7 @@ Histogram pre priemery vyzerá takto:
 
 ## Konfidenčné intervaly
 
-Konfidenčné intervaly spočítame a zobrazíme pomocou tohto kódu:
+Konfidenčné intervaly spočítame a zobrazíme pomocou tohto kódu (zobrazujeme iba prvých 100 konfidenčných intervalov):
 
 ```r
 # Výpočet

@@ -47,3 +47,22 @@ mean(odhady)
 Histogram pre priemery vyzerá takto:
 
 ![HistMeans](Pictures/E02P01.png)
+
+## Konfidenčné intervaly
+
+Konfidenčné intervaly spočítame a zobrazíme pomocou tohto kódu:
+
+```r
+# Výpočet
+ci_lower=odhady-qnorm(0.975)*odhady/sqrt(100)
+ci_upper=odhady+qnorm(0.975)*odhady/sqrt(100)
+
+# Kreslenie grafu
+plot(NULL,ylim=c(min(odhady)-0.3,max(odhady)+0.3),xlim=c(0,100))
+for(i in 1:100) {
+  lines(x=c(i,i),y=c(ci_lower[i],ci_upper[i]))
+}
+abline(h = 2, col = "red")
+```
+
+![ConfInts](Pictures/E02P02.png)

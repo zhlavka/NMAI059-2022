@@ -1,4 +1,4 @@
-Budeme pracovať s gamma rozdelením (parametrizácia pomocou `shape` a `scale`), pričom zafixujeme hodnotu parametra `scale = 2`.
+Budeme pracovať s gamma rozdelením (parametrizácia pomocou `shape` a `scale`), pričom zafixujeme hodnotu parametra `scale = 2`. Odhad spočítame iba pomocou momentovej metódy (pomocou maximálnej vierohodnosti to je relatívne náročné).
 
 ## Odvodenie hodnoty parametra pomocou momentovej metódy
 

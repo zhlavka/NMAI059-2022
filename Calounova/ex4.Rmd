@@ -1,0 +1,74 @@
+---
+title: "R Notebook"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+Dataset z https://rpubs.com/joelrudinas03/WQD 
+
+Obsahuje mereni ruznych parametru vin a jejich hodnoceni (kvalitu).
+```{r}
+winequality <- read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv", sep = ";")
+summary(winequality)
+```
+
+Zde vidime ruzne zavislosti mezi merenymi vlastnostmi.
+```{r}
+pairs(winequality[,1:11], col = winequality[,12])
+```
+
+```{r}
+library(MASS)
+parcoord(winequality[,1:11], col = winequality[,12])
+```
+
+Obsah kyseliny citronove vs urcite mereni kyselosti
+```{r}
+plot(winequality$citric.acid, winequality$fixed.acidity)
+```
+
+Obsah cukru vs. hustota vina
+
+```{r}
+plot(winequality$residual.sugar, winequality$density)
+```
+
+Urcite mereni kyselosti vs. pH
+```{r}
+plot(winequality$fixed.acidity, winequality$pH)
+```
+
+## PCA na nestandardizovanych datech
+Z dat vynechan sloupec s hodnocenim kvality vin.
+
+```{r}
+pca = prcomp(winequality[,1:11])
+summary(pca)
+```
+Prvni dve komponenty zachyti 98 % rozptylu.
+```{r}
+plot(pca)
+```
+
+Projekce dat na prvni dve hlavni komponenty.
+
+```{r}
+biplot(pca, xlabs=rep(".", nrow(winequality)))
+```
+
+
+## PCA pro standardizovana data
+
+```{r}
+pca_sc = prcomp(winequality[,1:11], scale. = TRUE)
+summary(pca_sc)
+```
+Zde je situace velmi odlisna, pro 98 % je potreba 10 hlavnich komponent...
+```{r}
+plot(pca_sc)
+```
+```{r}
+biplot(pca_sc,xlabs=rep(".", nrow(winequality)))
+```
+

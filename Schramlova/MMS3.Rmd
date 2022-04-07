@@ -1,0 +1,56 @@
+---
+title: "EX2"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# EX2
+
+## Odhad parametru $\mu$ pro zafixované $\sigma$
+
+$\sigma$=2
+
+### Momentova metoda
+
+$E[X] = e^{\mu + \frac{\sigma^{2}}{2}} = \overline{Xn}$
+
+$e^{\mu + \frac{2^{2}}{2}} = \overline{Xn}$
+
+$e^{\mu + \frac{4}{2}} = \overline{Xn}$
+
+$e^{\mu + {2}} = \overline{Xn}$
+
+$\mu + {2} = \log{Xn}$
+
+$\mu = \log{Xn} - 2$
+
+
+```{r}
+x = dlnorm(1000,1,2)
+x_mean = mean(x)
+odhad_mu = log(x_mean) - 2
+odhad_mu
+```
+
+
+```{r}
+odhady = c(rep(0,1000))
+for (i in 1:1000) {
+  x = dlnorm(1000,1,2)
+  x_mean= mean(x)
+  odhad_mu = log(x_mean) - 2
+  odhady[i] = odhad_mu
+}
+mean(odhady)
+hist(odhady)
+```
+
+### Metoda maximalni verohodnosti
+
+
+

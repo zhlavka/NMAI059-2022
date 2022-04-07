@@ -1,8 +1,11 @@
 
-1/ Konfidenční intervaly pro dvourozměrnou střední hodnotu
+Grafické znázornění mnohorozměrných dat a metoda hlavních komponent
 
+1/ najděte vhodná mnohorozměrná data (v R knihovna datasets)
 
+2/ data stručně popište a nakreslete
 
-2/ Grafické znázornění mnohorozměrných dat a metoda hlavních komponent
+3/ zkuste použít a okomentovat metodu hlavních komponent
 
+4/ pro zvolené dvě proměnné vypočítejte a nakreslete konfidenční intervaly pro střední hodnoty (i s Bonferroniho korekcí)
 

@@ -1,0 +1,98 @@
+---
+title: "MMS"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# EX4
+
+Grafické znázornění mnohorozměrných dat a metoda hlavních komponent
+
+1/ najděte vhodná mnohorozměrná data (v R knihovna datasets)
+
+2/ data stručně popište a nakreslete
+
+3/ zkuste použít a okomentovat metodu hlavních komponent
+
+4/ pro zvolené dvě proměnné vypočítejte a nakreslete konfidenční intervaly pro střední hodnoty (i s Bonferroniho korekcí)
+
+## 1/ najděte vhodná mnohorozměrná data (v R knihovna datasets)
+
+```{r}
+library(ade4)
+
+data(doubs)
+head(doubs)
+```
+
+
+```{r}
+env <- doubs$env
+head(env)
+```
+## 2/ data stručně popište a nakreslete
+
+Složení rybího společenství na řece Doubs, Francie. Data obsahují 4 tabulky: doubs.env, doubs.fish, doubs.species, doubs.xy.
+
+Doubs.env má 30 řádků a 11 sloupců, které odpovídají 11 proměnným. 
+
+```{r}
+
+library(skimr)
+
+dim(env)
+summary(env)
+skim(env)
+```
+
+### Párové bivariační grafy pro 11 proměnných. 
+```{r}
+pairs(env, pch = 19, cex=0.5)
+```
+
+### Standardizace dat. 
+
+```{r}
+library(purrr)
+env_log_tmp <- purrr::modify(env, log)
+env_log <- env_log_tmp[,-9]
+head(env_log)
+pairs(env_log, pch = 19, cex=0.5)
+```
+
+## 3/ zkuste použít a okomentovat metodu hlavních komponent
+
+```{r}
+pca <- prcomp(env, center = TRUE, scale. = TRUE) 
+pca
+summary(pca)
+plot(pca)
+
+pca_std <- prcomp(env_log, center = TRUE, scale. = TRUE) 
+pca_std
+summary(pca_std)
+plot(pca_std)
+```
+```{r}
+biplot(pca, xlabs=rep(".", nrow(env)))
+biplot(pca_std, xlabs=rep(".", nrow(env)))
+```
+
+
+```{r}
+library(factoextra)
+library(ggplot2)
+factoextra::fviz_eig(pca)
+factoextra::fviz_eig(pca_std)
+```
+
+```{r}
+factoextra::fviz_pca_var(pca_std)
+factoextra::fviz_pca_biplot(pca_std)
+```
+
+
+## 4/ pro zvolené dvě proměnné vypočítejte a nakreslete konfidenční intervaly pro střední hodnoty (i s Bonferroniho korekcí)

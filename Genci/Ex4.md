@@ -22,3 +22,43 @@ Cumulative Proportion  0.6903 0.8979 0.98770 0.99582 0.99894 0.99986 1.00000
 Vidíme, že za 98% rozpytu v našich dátach zodpovedajú iba prvé tri komponenty. Na obrázku nižšie môžeme vidieť, ktoré to sú.
 
 ![PCA](Pictures/E04P02.png)
+
+
+## Konfidenčné intervaly
+
+Budeme pracovať s atribútmi *Eccentricity* a *ConverArea*. Z obrázku pravdepodobne nemôžete nič vidieť, no ak budete hľadať, konfidenčné intervaly nájdete:
+
+![CI](Pictures/E04P03.png)
+
+Ak sa niekto dočítal až sem, bude odmenený mojim zdrojovým kódom použitým na generovanie grafu s konfidenčnými intervalmi. Podobnosť so vzorovým kódom v zadaní tam **určite** nie je.
+
+```
+ecc = d$Eccentricity
+ca = d$ConvexArea
+
+plot(ecc, ca)
+points(mean(ecc), mean(ca), col = "red")
+
+# T-testy
+t1 = t.test(ecc)$conf.int
+t2 = t.test(ca)$conf.int
+
+lines(x=c(t1[1],t1[1],t1[2],t1[2],t1[1]), y=c(t2[1],t2[2],t2[2],t2[1],t2[1]))
+
+# Elipsa
+S=var(cbind(ecc,ca))
+ev=eigen(S)
+S12=ev$vectors%*%diag(1/sqrt(ev$values))%*%t(ev$vectors)
+n=nrow(d)
+
+m1=mean(ecc)
+m2=mean(ca)
+mriz=seq(-0.5,1.5,by=0.005)
+contour(mriz,mriz,outer(mriz,mriz,function(x,y){n*apply((cbind(x-m1,y-m2)%*%S12)^2,1,sum)<=qchisq(0.95,2)}),add=TRUE,col="green",drawlabels=FALSE)
+
+# Bonferroni
+t1b=t.test(ecc,conf.level=0.975)$conf.int
+t2b=t.test(ca,conf.level=0.975)$conf.int
+
+lines(x=c(t1b[1],t1b[1],t1b[2],t1b[2],t1b[1]), y=c(t2b[1],t2b[2],t2b[2],t2b[1],t2b[1]),col="blue")
+```

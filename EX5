@@ -1,0 +1,11 @@
+
+Vyberte si vhodná data (například Animals2 v knihovně robustbase nebo cars v knihovně datasets) a pokuste se zvolit vysvětlující 
+proměnné (případně jejich transformace) tak, aby byla závisle proměnné co nejlépe vysvětlená. 
+
+Nakreslete graf s původními daty včetně proložených hodnot (fitted values) z navrženého lineárního modelu.
+
+Okomentujte statistickou významnost odhadnutých koeficientů. Otestujte nulovou hypotézu, že jsou všechny regresní koeficienty nulové 
+(například pomocí funkce anova()).
+
+Vypočítejte residua a na základě vhodných grafů okomentujte splnění předpokladů použitého modelu (heteroskedasticita, normalita, 
+tvar regresního modelu, apod).

@@ -24,4 +24,4 @@ foriginJapanese
         2.85736
 ```
 
-Optimálny model teda nevyužíva parameter *acceleration* a používa faktorový typ parametra *origin*.
+Optimálny model teda nevyužíva parameter *acceleration* a používa faktorový typ parametra *origin*. Grafické znázornenie vynecháme.

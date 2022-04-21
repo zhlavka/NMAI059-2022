@@ -26,7 +26,7 @@ Vidíme, že za 98% rozpytu v našich dátach zodpovedajú iba prvé tri kompone
 
 ## Konfidenčné intervaly
 
-Budeme pracovať s atribútmi *Eccentricity* a *ConverArea*. Z obrázku pravdepodobne nemôžete nič vidieť, no ak budete hľadať, konfidenčné intervaly nájdete:
+Budeme pracovať s atribútmi *Eccentricity* a *ConverArea*. V grafe vidíte iba určitú časť dát, pretože ináč neboli konfidenčné intervaly viditeľné.
 
 ![CI](Pictures/E04P03.png)
 
@@ -36,7 +36,7 @@ Ak sa niekto dočítal až sem, bude odmenený mojim zdrojovým kódom použitý
 ecc = d$Eccentricity
 ca = d$ConvexArea
 
-plot(ecc, ca)
+plot(ecc, ca, xlim=c(0.74,0.8), ylim=c(70000,100000))
 points(mean(ecc), mean(ca), col = "red")
 
 # T-testy

@@ -1,0 +1,75 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Dataset z https://rpubs.com/joelrudinas03/WQD 
+
+Obsahuje mereni ruznych parametru vin a jejich hodnoceni (kvalitu).
+
+```{r}
+winequality <- read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv", sep = ";")
+summary(winequality)
+```
+Obsah cukru vs. hustota vina
+
+```{r}
+plot(winequality$residual.sugar, winequality$density)
+```
+# Jednoduchy linearni model
+
+```{r}
+lm.1 = lm(winequality$residual.sugar ~ winequality$density)
+summary(lm.1)
+```
+
+```{r}
+plot(winequality$residual.sugar ~ winequality$density)
+abline(lm.1,col='red')
+```
+Jedno mereni je hodne vzdalene od ostatnich, rozhodla jsem se jej vyloucit.
+```{r}
+max_density = max(winequality$density)
+winequality2 = winequality[!winequality$density==max_density,]
+```
+```{r}
+lm.2 = lm(winequality2$residual.sugar ~ winequality2$density)
+summary(lm.2)
+```
+```{r}
+plot(winequality2$residual.sugar ~ winequality2$density)
+abline(lm.2, col='red')
+```
+
+### Residua
+
+```{r}
+residues = resid(lm.2)
+plot(residues)
+abline(h=0, col='red')
+```
+
+### Standardizovana residua
+
+```{r}
+std_residues = rstandard(lm.2)
+plot(std_residues)
+abline(h=0, col = 'red')
+```
+
+### Studentizovana residua
+```{r}
+student_residues = rstudent(lm.2)
+plot(student_residues)
+abline(h=0, col='red')
+```
+# Jiny model
+```{r}
+plot(winequality2$residual.sugar, winequality2$fixed.acidity)
+```
+```{r}
+lm.3 = lm(winequality2$residual.sugar ~ winequality2$density + winequality2$fixed.acidity)
+summary(lm.3)
+```
+
+

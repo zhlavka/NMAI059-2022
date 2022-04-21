@@ -1,5 +1,6 @@
 
-Vyberte si vhodná data (například Animals2 v knihovně robustbase nebo cars v knihovně datasets) a pokuste se zvolit vysvětlující 
+Vyberte si vhodná data (například Animals2 v knihovně robustbase nebo Rubber v knihovne MASS nebo cars v knihovně datasets) 
+a pokuste se zvolit vysvětlující 
 proměnné (případně jejich transformace) tak, aby byla závisle proměnné co nejlépe vysvětlená. 
 
 Nakreslete graf s původními daty včetně proložených hodnot (fitted values) z navrženého lineárního modelu.

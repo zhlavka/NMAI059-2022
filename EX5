@@ -10,3 +10,37 @@ Okomentujte statistickou významnost odhadnutých koeficientů. Otestujte nulovo
 
 Vypočítejte residua a na základě vhodných grafů okomentujte splnění předpokladů použitého modelu (heteroskedasticita, normalita, 
 tvar regresního modelu, apod).
+
+Priklad (quicksort4):
+
+## nacteni dat z internetu
+q4=read.table("https://www2.karlin.mff.cuni.cz/~hlavka/vyuka/stati/programy/data/quicksort4.txt",skip=1,header=T)
+
+## model primky pro stredni hodnotu poctu vymen
+par(mfrow=c(1,1))
+lm.v=lm(vymeny~delka,data=q4)
+summary(lm.v)
+plot(vymeny~delka,data=q4)
+abline(lm.v)
+
+## studentizovana rezidua
+rst=rstudent(lm.v)
+par(mfrow=c(2,1))
+plot(rst~q4$delka)
+plot(rst~fitted(lm.v))
+
+## model beta*x*log(x) -- prochazejici pocatkem
+par(mfrow=c(1,1))
+lm.p=lm(porovnani~I(delka*log(delka))-1,data=q4)
+summary(lm.p)
+plot(porovnani~delka,data=q4)
+## graf s prolozenymi hodnotami
+lines(fitted(lm.p)~q4$delka)
+
+## studentizovana rezidua
+rst.p=rstudent(lm.p)
+par(mfrow=c(2,1))
+plot(rst.p~q4$delka)
+plot(rst.p~fitted(lm.p))
+
+## mozny problem s predpokladem konstantniho rozptylu?

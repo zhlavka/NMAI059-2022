@@ -11,7 +11,7 @@ Okomentujte statistickou významnost odhadnutých koeficientů. Otestujte nulovo
 Vypočítejte residua a na základě vhodných grafů okomentujte splnění předpokladů použitého modelu (heteroskedasticita, normalita, 
 tvar regresního modelu, apod).
 
-Priklad (quicksort4):
+Priklad 1 (quicksort4):
 
 ## nacteni dat z internetu
 q4=read.table("https://www2.karlin.mff.cuni.cz/~hlavka/vyuka/stati/programy/data/quicksort4.txt",skip=1,header=T)
@@ -44,3 +44,38 @@ plot(rst.p~q4$delka)
 plot(rst.p~fitted(lm.p))
 
 ## mozny problem s predpokladem konstantniho rozptylu?
+
+
+2. PRIKLAD -- data Rubber v knihovne MASS
+
+
+## data o gume
+library(MASS)
+data(Rubber)
+
+## graf
+pairs(Rubber)
+
+
+## linearni model - dve vysvetlujici promenne
+lm1=lm(loss~hard+tens,data=Rubber)
+
+summary(lm1)
+
+par(mfrow=c(2,2))
+
+newdata=expand.grid(hard=seq(40,90,by=5),tens=seq(120,240,by=5))
+z=predict(lm1,newdata)
+
+# odhadnuta plocha  -- vrstevnice
+contour(unique(newdata$hard),unique(newdata$tens),matrix(z,nrow=length(unique(newdata$hard))))
+
+# studentizovana residua
+rst=rstudent(lm1)
+plot(rst~fitted(lm1))
+
+# odhadnuta plocha s body ve 3D
+library(scatterplot3d)
+s3d=scatterplot3d(Rubber$hard,Rubber$tens,Rubber$loss)
+s3d$plane3d(lm1)
+

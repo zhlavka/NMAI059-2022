@@ -26,7 +26,7 @@ Vidíme, že za 98% rozpytu v našich dátach zodpovedajú iba prvé tri kompone
 
 ## Konfidenčné intervaly
 
-Budeme pracovať s atribútmi *Eccentricity* a *ConverArea*. V grafe vidíte iba určitú časť dát, pretože ináč neboli konfidenčné intervaly viditeľné.
+Budeme pracovať s atribútmi *Eccentricity* a *ConvexArea*. V grafe vidíte iba určitú časť dát, pretože ináč neboli konfidenčné intervaly viditeľné.
 
 ![CI](Pictures/E04P03.png)
 

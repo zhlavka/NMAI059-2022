@@ -4,7 +4,7 @@ Budeme používať dataset Auto z knižnice ISLR. Podrobnosti o tomto datasete s
 
 ## Lineárna regresia
 
-Budeme predikovať parameter *mpg* (miles per gallon). Zároveň parameter *origin* zmeníme z číselného typu na faktor. Začneme s modelom, ktorý bude využívať všetky parametre okrem *name* a pomocou funkcie `stepAIC()` následne získame optimálny model. Dostávame:
+Budeme predikovať parameter *mpg* (miles per gallon). Zároveň pridáme parameter *forigin*, ktorý bude faktorom numerického parametra *origin* (predpokladáme, že ako faktor bude tento parameter významnejší). Začneme s modelom, ktorý bude využívať všetky parametre okrem *name* a pomocou funkcie `stepAIC()` následne získame optimálny model. Dostávame:
 
 ```R
 d = Auto
@@ -24,3 +24,4 @@ foriginJapanese
         2.85736
 ```
 
+Optimálny model teda nevyužíva parameter *acceleration* a používa faktorový typ parametra *origin*.

@@ -1,0 +1,86 @@
+---
+title: "EX5"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+---
+
+# EX5
+
+Vyberte si vhodná data (například Animals2 v knihovně robustbase nebo cars v knihovně datasets) a pokuste se zvolit vysvětlující 
+proměnné (případně jejich transformace) tak, aby byla závisle proměnné co nejlépe vysvětlená. 
+
+Nakreslete graf s původními daty včetně proložených hodnot (fitted values) z navrženého lineárního modelu.
+
+Okomentujte statistickou významnost odhadnutých koeficientů. Otestujte nulovou hypotézu, že jsou všechny regresní koeficienty nulové 
+(například pomocí funkce anova()).
+
+Vypočítejte residua a na základě vhodných grafů okomentujte splnění předpokladů použitého modelu (heteroskedasticita, normalita, 
+tvar regresního modelu, apod).
+
+```{r}
+library(yarrr)
+```
+
+```{r}
+head(diamonds)
+```
+```{r}
+summary(diamonds)
+```
+
+```{r}
+plot(price ~ carat, data = diamonds)
+```
+```{r}
+par(mfrow=c(1,1))
+lm.d=lm(price~carat,data=diamonds)
+plot(price~carat,data=diamonds)
+abline(lm.d)
+```
+
+```{r}
+#logarimus ceny:
+log_price = log(diamonds$price)
+plot(log_price ~ carat, data = diamonds)
+```
+```{r}
+plot(price ~ carat + depth + table, data = diamonds)
+```
+
+```{r}
+diamonds.lm <- lm(formula = price ~ carat + table + depth, data = diamonds)
+summary(diamonds.lm)
+```
+
+```{r}
+names(diamonds.lm)
+```
+
+```{r}
+diamonds.lm$coefficients
+```
+
+```{r}
+summary(diamonds.lm)$coefficients
+```
+
+```{r}
+diamonds$price.lm <- diamonds.lm$fitted.values
+head(diamonds)
+```
+```{r}
+data_heart <- read.csv('h.csv')
+summary(data_heart)
+```
+
+```{r}
+plot(heart.disease ~ biking, data=data_heart)
+plot(heart.disease ~ smoking, data=data_heart)
+```
+
+```{r}
+heart.disease.lm<-lm(heart.disease ~ biking + smoking, data = data_heart)
+summary(heart.disease.lm)
+```

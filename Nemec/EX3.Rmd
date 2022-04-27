@@ -1,0 +1,38 @@
+---
+title: "NMAI061-22-EX3"
+author: 'Matej Nemec'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Hypothesis testing
+## 1)Load and check data 
+Our data come from publicly available dataset on risk factors associated with low infant birth weight. 
+We want to know if there is a statistically significant relationship between smoking during pregnancy and reduced infant weight. (We suspect there is.)
+We should check the data for normality first lets examine the correlation of data distribution with corresponding normal distribution (parameters estimated from sample).
+```{r load plot}
+library(MASS)
+library(ggpubr)
+data=birthwt
+ggqqplot(birthwt$bwt)
+```
+
+Data distribution looks reasonably well correlated with normal distribution we can visualize the histogram.
+```{r norm hist}
+hist(data$bwt)
+```
+Also looks normal enough. To be sure let's run Shapiro-Wilk normality test
+```{r norm test}
+shapiro.test(birthwt$bwt)
+```
+P-value of 0.4353 is large enough for us to say that any difference between the distribution of birth weights and normal distribution is by chance. Also there are no extreme outliers so we can run t-test.
+
+## 3)Run t-test
+```{r ttest}
+t.test(bwt ~ smoke, data = data)
+```
+
+We can see that difference in means for the two samples is very significant(p-value of ~0.007 and 95% CI: ~(79,489) and unlikely to be caused by chance.
+We can therefore claim with reasonable confidence that smoking during pregnancy negatively affects birth weight. 

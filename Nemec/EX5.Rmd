@@ -1,0 +1,85 @@
+---
+title: "NMAI061-22-EX5"
+author: 'Matej Nemec'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(robustbase)
+library(sigmoid)
+library(ggpubr)
+library(lmtest)
+```
+# Visualization of multi-dimensional data and Principal Component Analysis
+
+## 1)Select appropriate data and try to select predictor variables (potentially with applied transformations) in order for predicted values to fit the observed data as good as possible.
+We decided to go with the Animals2 dataset which only has 2 variables and we will be trying to predict brain wight based on animals body weight. 
+Right away it makes intuitive sense not expect a completely linear relationship. But let us test this assumption a bit. 
+```{r load}
+data=Animals2
+cor.test(data$body,data$brain)
+```
+As we can see when not trasforming the variables at all there seems to be no correlation. Because the data is on mamals what we would intuitively expect is that there is both a point under which the brain size doesn't really decrease (or not nearly as much) with decreasing body size and at the same time we would expect brain size increase to plateau with very large body sizes. 
+When we think about which functions could model such behavior, log, tanh and sigmoid come to mind.
+```{r corr}
+cor.test(log(data$body),log(data$brain))
+cor.test(tanh(data$body),tanh(data$brain))
+cor.test(sigmoid(data$body),sigmoid(data$brain))
+
+```
+We can see that best correlation is achieved with log transform.
+
+## 2)Visualize the data including fitted values from a selected linear model.
+```{r model1}
+m1=lm(log(brain)~log(body),data=data)
+plot(log(data$body),log(data$brain))
+abline(m1)
+```
+We can see that there are some big outliers. The most problematic would be the three dinosaurs. We can remove them to improve our model. 
+```{r model2}
+data=data[data$body<data['Triceratops','body'],]
+m2=lm(log(brain)~log(body),data=data)
+plot(log(data$body),log(data$brain))
+abline(m2)
+```
+As exoected this improves our model.
+
+## 3)Comment on coefficient statistical significance. Test the null hypothesis of all coeffiecients being equal to 0.
+```{r modelsum}
+summary(m1)
+summary(m2)
+
+```
+Coefficients are statistically significant for both models, with dinosaurs and without. R^2 is markedly improved when leaving out the dinosaurs.
+
+
+We perform anova.
+```{r res}
+anova(m2)
+coef=summary(m2)$coefficients[2,1] 
+err=summary(m2)$coefficients[2,2] 
+coef + c(-1,1)*err*qt(0.975, 42)
+```
+We can reject the hypothesis that coeffiecient is 0. The entire 95% CI lies very far from 0.
+## 3)Calculate residuals a based on appropriate visualizations comment on fulfilling the prerequisites of the selected model (heteroskedascity, normality, regression model shape, etc.)
+We use the appropriate function to get residuals and test heteroskedacity using studentized Breusch-Pagan test.
+```{r hetero}
+rst=rstudent(m2)
+bptest(m2)
+```
+We cannot reject the null (homoskedacity) therefore hetoroskedacity is not present.
+```{r heteroplot}
+plot(rst~fitted(m2))
+abline(0,0)
+```
+If we look at the visual representation this conclusion seems reasonable.
+
+```{r normplot}
+ggqqplot(rst)
+```
+There seem to be no major outliers in our residuals. 
+Formula for our model is $log(Y)=log(X)$ shape of $log(X)$ is:
+```{r shape}
+curve(log(x), from=1, to=50, , xlab="x", ylab="y")
+```

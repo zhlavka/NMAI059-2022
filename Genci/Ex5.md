@@ -84,7 +84,7 @@ data:  bm
 BP = 31.146, df = 7, p-value = 5.844e-05
 ```
 
-Predpoklad homoskedasticity je teda porušený. Čo sa týka normality reziduí, tam to až na ten koniec vyzerá celkom v poriadku.
+Predpoklad homoskedasticity je teda porušený. Čo sa týka normality reziduí, tam to až na ten koniec vyzerá pomerne v poriadku.
 
 ### TO DO on windows (export doesn't work on unix)
 

@@ -73,7 +73,7 @@ Keďže P-value je pri všetkých koeficientoch dostatočne malá, nulová hypot
 
 Vytvorme si graf reziduí a Q-Q plot:
 
-# dopln obrazky
+**dopln obrazky**
 
 S homoskedasticitou to nevyzerá veľmi nádejne, preto ešte otestujeme našu nulovú hypotézu (homoskedasticitu):
 

@@ -24,7 +24,9 @@ foriginJapanese
         2.85736
 ```
 
-Optimálny model teda nevyužíva parameter *acceleration* a používa faktorový typ parametra *origin*. Grafické znázornenie vynecháme.
+Optimálny model teda nevyužíva parameter *acceleration* a používa faktorový typ parametra *origin*. Grafické znázornenie pre atribút horsepower vyzerá takto:
+
+![Reg](Pictures/E05P01.png)
 
 ## Významnosť odhadnutých koeficientov
 
@@ -73,7 +75,9 @@ Keďže P-value je pri všetkých koeficientoch dostatočne malá, nulová hypot
 
 Vytvorme si graf reziduí a Q-Q plot:
 
-**dopln obrazky**
+![Rezidua](Pictures/E01P02.png)
+
+![Q-QPlot](Pictures/E01P03.png)
 
 S homoskedasticitou to nevyzerá veľmi nádejne, preto ešte otestujeme našu nulovú hypotézu (homoskedasticitu):
 
@@ -85,41 +89,3 @@ BP = 31.146, df = 7, p-value = 5.844e-05
 ```
 
 Predpoklad homoskedasticity je teda porušený. Čo sa týka normality reziduí, tam to až na ten koniec vyzerá pomerne v poriadku.
-
-### TO DO on windows (export doesn't work on unix)
-
-```
-bm = lm(formula = mpg ~ horsepower + cylinders + displacement + weight + 
-          year + forigin, data = d)
-plot(d$horsepower, d$mpg)
-d.copy = d
-d.copy$cylinders = mean(d.copy$cylinders)
-d.copy$displacement = mean(d.copy$displacement)
-d.copy$weight = mean(d.copy$weight)
-d.copy$acceleration = mean(d.copy$acceleration)
-d.copy$year = mean(d.copy$year)
-d_am = subset(d.copy, d.copy$forigin == "American")
-d_eu = subset(d.copy, d.copy$forigin == "European")
-d_jp = subset(d.copy, d.copy$forigin == "Japanese")
-
-y = predict(bm, d_am)
-abline(a = mean(y), b = bm$coefficients[2], col = "red")
-
-yy = predict(bm, d_eu)
-abline(a = mean(yy), b = bm$coefficients[2], col = "blue")
-
-yyy = predict(bm, d_jp)
-abline(a = mean(yyy), b = bm$coefficients[2], col = "green")
-
-```
-
-```R
-rst = rstudent(bm)
-plot(rst~fitted(bm))
-abline(h = 0)
-
-qqnorm(rst)
-qqline(rst)
-
-plot(density(rst))
-```

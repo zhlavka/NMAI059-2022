@@ -1,0 +1,17 @@
+
+Na vhodných datech si vyzkoušejte test nezávislosti v kontingenční tabulce (chisq.test()) a logistickou regresi 
+-- lze použít i data z minulého týdne se vhodně zvolenou/definovanou závisle proměnnou.
+
+Příklad:
+
+library(MASS)
+data(birthwt)
+tt=table(birthwt[,c("low","smoke")])
+chisq.test(tt)  ## test nezavislosti faktorovych promennych low a smoke
+
+lrwa=glm(low~lwt+age,family=binomial,data=birthwt)  ## take test nezavislost low na smoke (pomoci logisticke regrese)
+
+lrswa=glm(low~smoke+lwt+age)                      ## zavislost na smoke, veku a vaze matky
+summary(lrswa)
+
+anova(lrwa,ltswa,test="LRT")  ## test podmodelu (vliv smoke -- vlastne totez jako test jednotliveho koeficientu)

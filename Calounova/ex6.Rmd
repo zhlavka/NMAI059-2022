@@ -1,0 +1,62 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+Dataset z https://rpubs.com/joelrudinas03/WQD 
+
+Obsahuje mereni ruznych parametru vin a jejich hodnoceni (kvalitu).
+
+```{r}
+winequality <- read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv", sep = ";")
+summary(winequality)
+```
+
+Oznacime vina s kvalitou <6 jako spatna, s kvalitou >= 6 jako dobra.
+```{r}
+winequality$bad = factor(winequality$quality<6, levels=c(TRUE, FALSE), labels=c('bad','good'))
+```
+
+
+## Summary pro spatna vina
+```{r}
+summary(winequality[winequality$bad == 'bad',])
+```
+
+## Summary pro dobra vina
+```{r}
+summary(winequality[winequality$bad == 'good',])
+
+```
+### Alcohol
+```{r}
+plot(winequality$bad, winequality$alcohol)
+```
+
+
+### Residual sugar
+```{r}
+plot(winequality$bad, winequality$residual.sugar)
+```
+
+### Total sulfur dioxide
+```{r}
+plot(winequality$bad, winequality$total.sulfur.dioxide)
+```
+
+## Logisticka regrese
+```{r}
+glm(winequality$bad ~ winequality$alcohol, family = binomial)
+```
+
+
+```{r}
+glm(winequality$bad~winequality$alcohol + winequality$residual.sugar + winequality$total.sulfur.dioxide, family = binomial)
+```
+```{r}
+glm(winequality$bad ~ winequality$fixed.acidity + winequality$volatile.acidity + winequality$citric.acid + winequality$residual.sugar + winequality$chlorides + winequality$free.sulfur.dioxide + winequality$total.sulfur.dioxide + winequality$total.sulfur.dioxide + winequality$density + winequality$pH + winequality$sulphates + winequality$alcohol, family = binomial)
+```
+

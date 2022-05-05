@@ -41,7 +41,7 @@ Nezávislosť teda zamietame.
 
 # Logistická regresia
 
-Pozrieme sa samostatne na súvis počtu valcov na váhe auta a jeho konskej sile. Interpetácia však nie je jednoduchá, keďže náš faktor je umelo vytvorený.
+Pozrieme sa samostatne na súvis počtu valcov na váhe auta a jeho konskej sile. Interpetácia však nie je jednoduchá, keďže náš faktor je umelo vytvorený a používame spojité nezávislé premenné.
 
 ```R
 # cylinder ~ weight

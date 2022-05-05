@@ -72,7 +72,7 @@ Number of Fisher Scoring iterations: 7
 
 Šanca, že auto s priemernou hmotnosťou má viac ako 5 valcov je `exp(0.5374623) = 1.711658` pre auto s priemernou hmotnoťou. S každou librou hmotnosti navyše sa táto šanca zvýši o `exp(0.0067441) = 1.006767`.
 
-```R
+```r
 b = mean(d$horsepower)
 m2 = glm(cylinders ~ I(horsepower-b), data = d, family = binomial)
 summary(m2)
